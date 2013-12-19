@@ -1,0 +1,28 @@
+\begin{thebibliography}{1}
+
+\bibitem{Lumay2013}
+G.~Lumay, N.~Obara, F.~Weyer, and N.~Vandewalle.
+\newblock Self-assembled magnetocapillary swimmers.
+\newblock {\em Soft Matter}, 9:2420--2425, 2013.
+
+\bibitem{Alexander2008}
+G.~P. Alexander and J.~M. Yeomans.
+\newblock Dumb-bell swimmers.
+\newblock {\em EPL (Europhysics Letters)}, 83(3):34006, 2008.
+
+\bibitem{Pickl2012}
+Kristina Pickl, Jan Götz, Klaus Iglberger, Jayant Pande, Klaus Mecke,
+  Ana-Sunčana Smith, and Ulrich Rüde.
+\newblock All good things come in threes—three beads learn to swim with
+  lattice boltzmann and a rigid body solver.
+\newblock {\em Journal of Computational Science}, 3(5):374 -- 387, 2012.
+\newblock <ce:title>Advanced Computing Solutions for Health Care and
+  Medicine</ce:title>.
+
+\bibitem{Lumay2012}
+N.~Vandewalle, L.~Clermont, D.~Terwagne, S.~Dorbolo, E.~Mersch, and G.~Lumay.
+\newblock Symmetry breaking in a few-body system with magnetocapillary
+  interactions.
+\newblock {\em Phys. Rev. E}, 85:041402, Apr 2012.
+
+\end{thebibliography}

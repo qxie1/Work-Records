@@ -1,0 +1,76 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{color}
+
+%opening
+\title{implementation of Magnetic particles in LBM}
+\author{Qingguang Xie}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+\newpage
+
+\section{16.12.2013-20.12.2013}
+The conflict between the applied torque and response of the particles.
+\begin{itemize}
+ \item The difference between direction of applied magnetic filed and the direction of movements of magnetic partilces.
+       The force direction is right, however, the torque direction is opposite.
+       In the code it is right hand orientation, but after applying a positive torque, the rotation is negative.
+  \item Now the quarternion aggrees well with orientation. 
+        The hidden error may be in rotation matrix, but I checked the code line by line, there is no error on the signs.
+   \item  More information about the bug, under constant torque the output angular velocity direction is dependent on the orientation, but the rotation direction is right.
+          \textcolor{red}{One bug is found in dump output. The body-fixed angular veloctiy is dumped. I convered the body-fixed angular velocity to space-fixed angular velocity.}
+\textcolor{red}{}
+\end{itemize}
+Balance between capillary force and magnetic force.~\cite{Lumay2013}
+\begin{itemize}
+ \item Apply constant force on particles, constant external field vertical to interface making magnetic particle repulsive each other.
+      further more, add a magnetic filed parallel to interface
+ \item Parameter $fix\_vx$ is used to fix x coordinate of particles for $fix\_vx\_t$ time steps, then the particle is released.
+     The purpose is that let the interface is fully deformed under constant force
+     before entering play with magnetic force.
+ \item A group of parameters for two particles work well. 
+      Domain size $128*64*64$, $R=5$,distance between two particles $dr=30$, constant force $F=0.5$, magtitude of magnetic dipole $m_i=3e5$, constang magnetic filed $B=[0,1e-4,0]$
+      The Scallop theorem states that to achieve propulsion at low Reynolds number in Newtonian fluids a swimmer must deform in a way that is not invariant under time-reversal. 
+      Nonreciprocal motion is only possible for $N>2$, a pair of particles is a poor swimmer~\cite{Lumay2013}. 
+      However, two or more dumb-bells, with mutual phase differences can swimm~\cite{Alexander2008}.  
+ \item  Three particles, 
+       Domain size $128*64*128$, $R=5$,distance between two particles $dr=30$,\\ 
+       magtitude of magnetic dipole $m_i=3e5$, constang magnetic filed $B=[0,1e-4,0]$.\\
+       1.With constant force $F=0.5$,the particles detach the interface.  \\
+       2.Decrease force to $F=0.2$, and $m_i=2e5$,\\
+      The spring-linked three-particle swimmer is studied by LBM~\cite{Pickl2012}.
+      Symmetry breaking in a few-body system with magnetocapillary interactions is investigated~\cite{Lumay2012}
+\end{itemize}
+Interface deformation and magnetic torque
+\begin{itemize}
+ \item A magnetic field which is vertical to interface is applied, the particle rotates following the magnetic field, 
+       when the particle orientation is parallel to the applied external field, the magnetic torque vanishes. then due to the deformation 
+of interface, the particle rotates back releasing the free energy of the interface, thus causing an oscillation.
+\textcolor{red}{This seems interesting, may be used in the future.}
+\end{itemize}
+Conversion from LBM unit to SI unit
+\begin{itemize}
+ \item
+      $C_s = 1482.35 m/s $\\
+      $\nu_r = 1.0 \times 10^{-6} m^2/s$\\
+      $D=2.8 \times 10^{-6} m$\\
+      $c_s = \frac{1}{\sqrt{3}}$, $D=10$ \\
+      $\delta x= L/N = 2.8\times 10^{-7} m$  \\      
+      $\delta t = c_s/C_s * dx = 1.09 \times 10^{-10} s$ \\
+      $\nu = (dx*dx)/dt \times {c_s}^2\times (\tau -0.5) $\\
+      $\rho =2, m= \frac{4}{3}\pi\rho R^3$
+       
+         
+\end{itemize}
+
+\section{Bibliography}
+\bibliographystyle{unsrt}
+\bibliography{work-record}
+
+\end{document}
